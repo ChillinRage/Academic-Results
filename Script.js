@@ -1,5 +1,5 @@
 async function get_data() {
-    const url = 'https://raw.githubusercontent.com/ChillinRage/Basic-Projects/main/Academic%20Website%201/Acad%20results.csv';
+    const url = './Acad results.csv';
     const response = await fetch(url);       // fetch data
     const raw_data = await response.text();  // process data
     const rows     = raw_data.split('\r\n'); // split into rows
