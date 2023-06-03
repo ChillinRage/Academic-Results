@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="with-device-width">
+    <title>Academic Record</title>
+    <link rel='stylesheet' href='sub.css'>
+    <link rel="icon" type="img/png" href="bongo_cat.jpg">
+</head>
+
+<body>
+    <h1 style="margin-bottom: 1%;">Student's Pathetic Record</h1>
+    <div style="text-align:center;">
+        <button id="rawGrades" onclick="displayRaw()">Raw Grades</button>
+        <button id="withSU" onclick="displaySU()">With S/U</button><br>
+    </div>
+    <table class="record_table" id="table">
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Module</th>
+            <th>Grade</th>
+            <th>MC</th>
+            <th style="width:30%">Remark</th>
+        </tr>
+    </table>
+    <br>
+    <div class="cap_block">
+        <label>CAP: </label>
+        <label class="cap_label" id="cap_label">0.00</label>
+    </div>
+
+    <script src="Script.js"></script>
+</body>
+
+</html>
