@@ -1,14 +1,14 @@
-Year,Semester,Module,Grade,MC,Remark
-1,1,CS1101S,A+,4,Digital Literacy
-1,1,CS1231S,A-,4,CS Foundation
-1,1,MA2001,A-,4,Mathematics
-1,1,GEA1000,A,4,Data Literacy
-1,1,ES1103,A-,4,Unrestricted Elective
-1,2,CS1010R,A,1,Unrestricted Elective
-1,2,CS2030S,A,4,CS Foundation
-1,2,CS2040S,A,4,CS Foundation
-1,2,MA1521,A-,4,Mathematics
-1,2,IS1108,B+,4,Computing Ethics
-1,2,GESS1029,B+,Singapore Studies
-1,2,GEX1014,B+,Unrestricted Elective
-1,2,EL1101E,A-,Unrestricted Elective
+Year,Semester,Module,Grade,MC,Remark,false
+1,1,CS1101S,A+,4,Digital Literacy,false
+1,1,CS1231S,A-,4,CS Foundation,false
+1,1,MA2001,A-,4,Mathematics,false
+1,1,GEA1000,A,4,Data Literacy,false
+1,1,ES1103,A-,4,Unrestricted Elective,false
+1,2,CS1010R,A,1,Unrestricted Elective,false
+1,2,CS2030S,A,4,CS Foundation,false
+1,2,CS2040S,A,4,CS Foundation,false
+1,2,MA1521,A-,4,Mathematics,false
+1,2,IS1108,B+,4,Computing Ethics,true
+1,2,GESS1029,B+,4,Singapore Studies,true
+1,2,GEX1014,B+,4,Unrestricted Elective,true
+1,2,EL1101E,A-,4,Unrestricted Elective,false
