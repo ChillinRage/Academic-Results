@@ -149,6 +149,8 @@ async function displayRaw(sortFunc) {
     for (let i = 0; i < data.length; i++) {
         data[i] = data[i].split(',');
     }
+
+
     data.sort(sortFunc);
 
     // insert into html
@@ -158,6 +160,7 @@ async function displayRaw(sortFunc) {
     }
     
     update_cap();
+    raw = true;
 }
 
 async function displaySU(sortFunc) {
@@ -186,7 +189,16 @@ async function displaySU(sortFunc) {
     }
 
     update_cap();
+    raw = false;
 }
 
+function display(sortFunc) {
+    if (raw) {
+        displayRaw(sortFunc);
+    } else {
+        displaySU(sortFunc);
+    }
+}
 
-displayRaw((x,y) => 0);
+let raw;
+displayRaw(DEFAULT);
