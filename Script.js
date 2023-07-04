@@ -1,5 +1,37 @@
+// SORTING FUNCTIONS
+const DEFAULT = (x,y) => 0;
+
+/* true: x bigger than y
+ * false: x equal to or less than y 
+ */
+function compareGrade(row1, row2) {
+    let x = row1[3];
+    let y = row2[3];
+
+    if (x[0] != y[0] || x === y) { // different letter grade or exactly equal
+        return x[0] < y[0]
+            ? -1
+            : 1;
+    }
+    return x[1] === "+" || y[1] === "-"
+        ? -1
+        : 1;
+}
+
+function compareCode(row1, row2) {
+    let x = row1[2];
+    let y = row2[2];
+
+    return x > y
+        ? 1
+        : -1;
+}
+
+/* ================================================================ */
+
 async function get_data() {
-    const url = './Acad%20results.csv';
+    //changed from 'Acad results.csv' in github due to CORS policy
+    const url = 'https://raw.githubusercontent.com/ChillinRage/Academic-Results/gh-pages/Acad%20results.csv';
     const response = await fetch(url);       // fetch data
     const raw_data = await response.text();  // process data
     const rows     = raw_data.split('\r\n'); // split into rows
@@ -108,41 +140,53 @@ async function update_cap() {
     }
 }
 
-async function displayRaw() {
+async function displayRaw(sortFunc) {
     const data   = await get_data();
-    const header = data[0].split(',');
-    const len    = data.length - 1;  //ignore extra undefined row.
+    const header = data.shift().split(',');
+    data.pop(); // remove undefined row
 
+    // convert each string row into array
+    for (let i = 0; i < data.length; i++) {
+        data[i] = data[i].split(',');
+    }
+    data.sort(sortFunc);
+
+    // insert into html
     clear_table();
-    for (let i = 1; i < len; i++) {
-        let row = data[i].split(',');
-        insert_row(row);
+    for (let i = 0; i < data.length; i++) {
+        insert_row(data[i]);
     }
     
     update_cap();
 }
 
-async function displaySU() {
+async function displaySU(sortFunc) {
     const data = await get_data();
-    const header = data[0].split(',');
-    const len = data.length - 1;
+    const header = await data.shift().split(',');
+    data.pop(); // remove undefined row
 
+    // convert each string row into array
     const fail = ["D+","D","F"]
-    clear_table();
-    for (let i = 1; i < len; i++) {
-        let row = data[i].split(',');
-        if (JSON.parse(row[6])) {
-            if (fail.includes(row[3])) { // U grade
-                row[3] = "U";
+    for (let i = 0; i < data.length; i++) { 
+        data[i] = data[i].split(',');
+        if (JSON.parse(data[i][6])) {  // change grades to S/U
+            if (fail.includes(data[i][3])) {
+                data[i][3] = "U";
             } else {
-                row[3] = "S";
+                data[i][3] = "S";
             }
         }
+    }
+    data.sort(sortFunc);
 
-        insert_row(row);
+    // insert into html
+    clear_table();
+    for (let i = 0; i < data.length; i++) {
+        insert_row(data[i]);
     }
 
     update_cap();
 }
 
-displayRaw();
+
+displayRaw((x,y) => 0);
