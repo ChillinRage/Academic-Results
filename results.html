@@ -12,15 +12,15 @@
 <body>
     <h1 style="margin-bottom: 1%;">Student's Pathetic Record</h1>
     <div style="text-align:center;">
-        <button id="rawGrades" onclick="displayRaw()">Raw Grades</button>
-        <button id="withSU" onclick="displaySU()">With S/U</button><br>
+        <button id="rawGrades" onclick="displayRaw((x,y) => 0)">Raw Grades</button>
+        <button id="withSU" onclick="displaySU((x,y) => 0)">With S/U</button><br>
     </div>
     <table class="record_table" id="table">
         <tr>
             <th>Year</th>
             <th>Semester</th>
-            <th>Module</th>
-            <th>Grade</th>
+            <th onclick="displayRaw(compareCode)">Module</th>
+            <th onclick="displayRaw(compareGrade)">Grade</th>
             <th>MC</th>
             <th style="width:30%">Remark</th>
         </tr>
