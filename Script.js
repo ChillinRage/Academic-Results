@@ -201,4 +201,4 @@ function display(sortFunc) {
 }
 
 let raw;
-displayRaw(DEFAULT);
+displaySU(DEFAULT);
