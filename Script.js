@@ -29,6 +29,7 @@ function compareCode(row1, row2) {
 
 /* ================================================================ */
 
+// retrieve data from csv file
 async function get_data() {
     //changed from 'Acad results.csv' in github due to CORS policy
     const url = 'https://raw.githubusercontent.com/ChillinRage/Academic-Results/gh-pages/Acad%20results.csv';
@@ -39,6 +40,7 @@ async function get_data() {
     return rows;
 }
 
+// retrieve data from HTML table
 function read_data() {
     const table = document.getElementById("table");
     const rows = table.rows;
