@@ -22,6 +22,10 @@ h1 {
     font-size: 25px;
 }
 
+#moduleHead:hover ~ th{
+    text-shadow: 2px 2px;
+}
+
 th {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -36,7 +40,6 @@ td {
     padding-right: 10px;
     text-align: center;
 }
-
 
 .cap_block {
     width: 15%;
@@ -54,6 +57,7 @@ br {
 .cap_label {
     text-decoration: underline;
 }
+
 
 @media (min-device-width:300px) and (max-device-width: 700px) {
 
