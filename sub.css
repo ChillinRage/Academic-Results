@@ -22,8 +22,13 @@ h1 {
     font-size: 25px;
 }
 
-#moduleHead:hover{
-    text-shadow: 2px 2px;
+#moduleHead, #gradeHead {
+    transition: .4s;
+}
+
+#moduleHead:hover, #gradeHead:hover{
+    text-shadow: 4px 4px 4px rgb(180, 180, 180);
+    transition: .4s;
 }
 
 th {
