@@ -22,7 +22,7 @@ h1 {
     font-size: 25px;
 }
 
-#moduleHead:hover ~ th{
+#moduleHead:hover{
     text-shadow: 2px 2px;
 }
 
