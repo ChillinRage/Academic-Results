@@ -1,9 +1,10 @@
 // SORTING FUNCTIONS
 const DEFAULT = (x,y) => 0;
 
-/* true: x bigger than y
- * false: x equal to or less than y 
- */
+/* 
+true:  row1 bigger than row2
+false: row1 equal to or less than row2
+*/
 function compareGrade(row1, row2) {
     let x = row1[3];
     let y = row2[3];
@@ -61,6 +62,7 @@ function read_data() {
     return data;
 }
 
+// insert a module into the table
 function insert_row(data) {
     var table  = document.getElementById("table");
     var row    = table.insertRow();
@@ -131,13 +133,13 @@ async function update_cap() {
             case 'F':
                 points += 0;
                 break;
-            case 'S': case 'U':
+            case 'S': case 'U': // not considered in GPA calculation
                 total_mc -= row[4];
                 break;
         }
     }
     
-    if (total_mc > 0) {
+    if (total_mc > 0) { 
         document.getElementById('cap_label').innerHTML = (points / total_mc).toFixed(2);
     }
 }
