@@ -14,21 +14,42 @@ h1 {
     color: azure;
 }
 
+#rawGrades, #withSU {
+    font-size: 20px;
+    padding: 1%;
+    margin: 1%;
+}
+
+#progress {
+    font-size: 32px;
+    padding: 1%;
+    margin: 1%;
+    margin-left: 20%;
+    color: aqua;
+    /* 1 pixel black shadow to left, top, right and bottom */
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: .2s;
+}
+
+#progress:hover {
+    text-decoration-color: aqua;
+    transition: .2s ease-in;
+}
+
+#moduleHead, #gradeHead { transition: .3s; }
+#moduleHead:hover, #gradeHead:hover{
+    text-shadow: 4px 4px 4px rgb(180, 180, 180);
+    transition: .3s;
+}
+
 .record_table {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: 80%;
     background-color: azure;
     font-size: 25px;
-}
-
-#moduleHead, #gradeHead {
-    transition: .4s;
-}
-
-#moduleHead:hover, #gradeHead:hover{
-    text-shadow: 4px 4px 4px rgb(180, 180, 180);
-    transition: .4s;
 }
 
 th {
@@ -46,22 +67,27 @@ td {
     text-align: center;
 }
 
+/* =============== COLUMNS ================== */
+.unitColumn {
+    width: 10%;
+}
+
+.codeColumn {
+    width: 25%;
+}
+
+/* ========================================== */
+
 .cap_block {
     width: 15%;
     margin: auto;
-    background-color: rgb(103, 243, 145);
-    text-align: center;
-    font-size: 30px;
     padding: 1%;
+    font-size: 30px;
+    text-align: center;
 }
 
-br {
-    clear: both;
-}
-
-.cap_label {
-    text-decoration: underline;
-}
+br { clear: both; }
+#cap_label { text-decoration: underline; }
 
 
 @media (min-device-width:300px) and (max-device-width: 700px) {
@@ -91,14 +117,36 @@ br {
 
 }
 
-#rawGrades {
-    font-size: 20px;
-    padding: 1%;
-    margin: 1%;
+/* =========== STYLING FOR DEGREE MODAL ===========*/
+#ProgressModal {
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    z-index: 1;
+
+    padding: 2px;
+    width: 84%;
+    height: 100%;
+    background-color: rgb(15, 6, 41, 0.9);
 }
 
-#withSU {
-    font-size: 20px;
-    padding: 1%;
-    margin: 1%;
+#closeModal {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    height: 33px;
+    width: 33px;
+    font-size: 24px;
+}
+
+#closeModal:hover {
+    border-style: solid;
+    border-radius: 25%;
+}
+
+#modalTable {
+    width: 100%;
+    background-color: rgb(22, 22, 22);
 }

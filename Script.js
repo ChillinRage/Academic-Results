@@ -51,12 +51,12 @@ function read_data() {
         data[i - 1] = [];
         let cells = rows.item(i).cells;
 
-        data[i-1][0] = Number(cells[0].innerHTML); //year
-        data[i-1][1] = Number(cells[1].innerHTML); //sem
-        data[i-1][2] = String(cells[2].innerHTML); //mod
-        data[i-1][3] = String(cells[3].innerHTML); //grade
-        data[i-1][4] = Number(cells[4].innerHTML); //mc
-        data[i-1][5] = String(cells[5].innerHTML); //remark
+        data[i-1][0] = Number(cells[0].innerHTML); // year
+        data[i-1][1] = Number(cells[1].innerHTML); // sem
+        data[i-1][2] = String(cells[2].innerHTML); // mod
+        data[i-1][3] = String(cells[3].innerHTML); // grade
+        data[i-1][4] = Number(cells[4].innerHTML); // units
+        data[i-1][5] = String(cells[5].innerHTML); // remark
     }
 
     return data;
@@ -70,14 +70,19 @@ function insert_row(data) {
     var sem    = row.insertCell(1);
     var mod    = row.insertCell(2);
     var grade  = row.insertCell(3);
-    var mc     = row.insertCell(4);
+    var units  = row.insertCell(4);
     var remark = row.insertCell(5);
+
+    year.className  = "unitColumn";
+    sem.className   = "unitColumn";
+    grade.className = "unitColumn";
+    units.className = "unitColumn";
 
     year.innerHTML   = data[0];
     sem.innerHTML    = data[1];
     mod.innerHTML    = data[2];
     grade.innerHTML  = data[3];
-    mc.innerHTML     = data[4];
+    units.innerHTML  = data[4];
     remark.innerHTML = data[5];
 }
 
@@ -93,12 +98,12 @@ function clear_table() {
 async function update_cap() {
     const data = read_data();
     const len  = data.length;
-    let total_mc = 0;
-    let points   = 0;
+    let total_units = 0;
+    let points = 0;
     
     for (let i = 0; i < len; i++) {
         const row = data[i];
-        total_mc += row[4];
+        total_units += row[4];
         switch (row[3]) {
             case 'A+':
                 points += (5 * row[4]);
@@ -134,17 +139,18 @@ async function update_cap() {
                 points += 0;
                 break;
             case 'S': case 'U': // not considered in GPA calculation
-                total_mc -= row[4];
+                total_units -= row[4];
                 break;
         }
     }
     
-    if (total_mc > 0) { 
-        document.getElementById('cap_label').innerHTML = (points / total_mc).toFixed(2);
+    if (total_units > 0) { 
+        document.getElementById('cap_label').innerHTML = (points / total_units).toFixed(2);
     }
 }
 
 async function displayRaw(sortFunc) {
+    CURRENT = sortFunc;
     const data   = await get_data();
     const header = data.shift().split(',');
     data.pop(); // remove undefined row
@@ -168,6 +174,7 @@ async function displayRaw(sortFunc) {
 }
 
 async function displaySU(sortFunc) {
+    CURRENT = sortFunc;
     const data = await get_data();
     const header = await data.shift().split(',');
     data.pop(); // remove undefined row
@@ -204,5 +211,15 @@ function display(sortFunc) {
     }
 }
 
-let raw;
-displaySU(DEFAULT);
+var raw;
+var CURRENT = DEFAULT;
+displaySU(CURRENT);
+
+
+/* ====================================================== */
+/* ====================================================== */
+// FOR MODALS
+var modal = document.getElementById("ProgressModal");
+
+const showModal = () => modal.style.display = "block";
+const hideModal = () => modal.style.display = "none";
