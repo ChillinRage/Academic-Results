@@ -12,3 +12,8 @@ Year,Semester,Module,Grade,MC,Remark,false
 1,2,GESS1029,B+,4,Singapore Studies,true
 1,2,EL1101E,A-,4,Cross-Disciplinary,false
 1,2,GEX1014,B+,4,Unrestricted Elective,true
+2,1,CS2100,B+,4,CS Foundation,false
+2,1,ST2334,A,4,Mathematics,false
+2,1,CS2105,B,4,Unrestricted Elective,false
+2,1,IS2218,B+,4,Interdisciplinary,false
+2,1,GEC1028,B,4,Cultures & Connections,true
