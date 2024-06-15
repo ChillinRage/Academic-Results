@@ -1,11 +1,10 @@
 // retrieve data from csv file
 async function fetchData() {
     const url = 'https://raw.githubusercontent.com/ChillinRage/Academic-Results/gh-pages/data/Acad%20results.csv';
-    
     const response = await fetch(url);       // fetch data
     const raw_data = await response.text();  // process data
     const rows     = raw_data.split('\r\n'); // split into rows
-    
+    console.log(rows);
     return rows;
 }
 
@@ -55,7 +54,6 @@ async function getSuData() {
             }
         }
     });
-
     return data;
 }
 
