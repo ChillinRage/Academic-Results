@@ -17,8 +17,8 @@ Year,Semester,Module,Grade,MC,Remark,false
 2,1,CS2105,B,4,Unrestricted Elective,false
 2,1,IS2218,B+,4,Interdisciplinary,false
 2,1,GEC1028,B,4,Cultures & Connections,true
-2,2,CS2101,A-,4,CS Foundation,true
-2,2,CS2103T,A-,4,CS Foundation,true
-2,2,CS2109S,C+,4,CS Foundation,true
-2,2,CS3230,A-,4,CS Foundation,true
-2,2,ST1131,A,4,Unrestricted Elective,true
+2,2,CS2101,A-,4,CS Foundation,false
+2,2,CS2103T,A-,4,CS Foundation,false
+2,2,CS2109S,C+,4,CS Foundation,false
+2,2,CS3230,A-,4,CS Foundation,false
+2,2,ST1131,A,4,Unrestricted Elective,false
