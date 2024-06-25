@@ -14,11 +14,10 @@ td {
 }
 
 .recordTable {
+    width: 80%;
     margin: auto;
     margin-bottom: 1%;
-    width: 80%;
     background-color: azure;
-    font-size: 25px;
 }
 
 .smallColumn {
@@ -30,6 +29,7 @@ td {
 }
 
 .moduleHead, .gradeHead { transition: .3s; }
+
 .moduleHead:hover, .gradeHead:hover{
     text-shadow: 4px 4px 4px rgb(180, 180, 180);
     transition: .3s;

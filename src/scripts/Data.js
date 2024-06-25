@@ -1,6 +1,18 @@
+import {getURL} from './Firebase.js';
+
 class Data {
     #rawData = [];
     #suData = [];
+
+    static #SAMPLE_DATA = [
+        "year,semester,module,grade,unit,remark,su",
+        "1,1,ABC1234,B+,4,Sample,false",
+        "1,2,MOE7211,C+,2,Sample SU,true",
+        "2,2,DEF5678,A,4,SAMPLE,false",
+        "3,1,CODE7211,A-,4,Something here,false",
+        "4,2,FINAL4420,A+,6,,false",
+        ""
+    ]
 
     constructor() {
         this.#updateData();
@@ -8,16 +20,20 @@ class Data {
 
     // retrieve data from csv file
     async #fetchData() {
-        const url = 'https://raw.githubusercontent.com/ChillinRage/Academic-Results/gh-pages/data/Acad%20results.csv';
-        const response = await fetch(url);       // fetch data
-        const raw_data = await response.text();  // process data
-        const rows     = raw_data.split('\n'); // split into rows
-        return rows;
+        return getURL().then(
+            url => fetch(url)).then( // fetch data
+            response => response.text()).then(  // process data
+                raw_data => raw_data.split('\n') // split into rows
+            ).catch(err => {
+                alert("ERROR: Unable to fetch data!\nUsing sample data instead.");
+                return [...Data.#SAMPLE_DATA];
+            });
+        
     }
 
     async #updateData() {
         const rawData = await this.#fetchData();
-        const header  = rawData.shift().split(',');
+        const header  = rawData.shift();
         rawData.pop(); // remove undefined row
         
         const fail = ["D+","D","F"];
@@ -26,6 +42,7 @@ class Data {
         // convert each string row into array
         for (let i = 0; i < rawData.length; i++) {
             rawData[i] = rawData[i].split(',');
+
             suData[i] = [...rawData[i]];
             if (JSON.parse(suData[i][6])) {
                 if (fail.includes(suData[i][3])) {

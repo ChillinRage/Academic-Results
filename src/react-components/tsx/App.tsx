@@ -14,7 +14,7 @@ const App = () => {
     const [score, setScore] = React.useState((0).toFixed(2));
     const [showForm, setShowForm] = React.useState(false);
     const [showSummary, setShowSummary] = React.useState(false);
-    const logic = React.useRef(new Logic(setData, setScore)).current;
+    const logic = React.useMemo(() => new Logic(setData, setScore), []);
     
     const filterForm  = <Form className={showForm ? 'filterForm-visible' : 'filterForm-collapse'} logic={logic}/>;
     const recordTable = <CourseTable list={data} moduleFunc={() => logic.sortByCode()} gradeFunc={() => logic.sortByGrade()}/>;
@@ -37,7 +37,7 @@ const App = () => {
         {filterForm}
         {recordTable}
         {showSummary && <Summary/>}
-    </>;
+    </>
 }
 
 export default App;

@@ -48,21 +48,17 @@ export default class Logic {
         let total_units = 0;
         let points = 0;
 
-        for (let i = 0; i < filteredList.length; i++) {
-            const row = filteredList[i];
+        filteredList.forEach(row => {
             total_units += parseInt(row[4]);
             points += GRADES[row[3]] * parseInt(row[4]);
-            
             if (row[3] === "S" || row[3] === "U") {
                 total_units -= parseInt(row[4]);
             }
-        }
-        
-        if (total_units > 0) { 
-            return (points / total_units).toFixed(2);
-        } else {
-            return 0.00;
-        }
+        })
+
+        return (total_units > 0)
+            ? (points / total_units).toFixed(2)
+            : (0).toFixed(2);
     }
 
     setFilter(criteriaList) {

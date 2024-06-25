@@ -3,3 +3,9 @@
     font-size: 45px;
     color: azure;
 }
+
+@media (max-width: 600px) {
+    .header {
+        font-size: 30px;
+    }
+}

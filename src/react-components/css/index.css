@@ -13,3 +13,13 @@ body {
     margin: auto;
     font-size: 30px;
 }
+
+button {
+    font-size: 22px;
+}
+
+@media (max-width: 600px) {
+    button, body {
+        font-size: 18px;
+    }
+}
