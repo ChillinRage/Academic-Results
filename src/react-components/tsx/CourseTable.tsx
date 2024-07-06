@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/CourseTable.css';
+import { Module } from '../../Types'
 
 interface Props {
-    list: string[],
+    list: Module[],
     moduleFunc: () => void,
     gradeFunc: () => void
 }
@@ -22,14 +23,14 @@ const CourseTable = ({list, moduleFunc, gradeFunc} : Props) => {
         </thead>
 
         <tbody>
-            {list.map(row => (
+            {list.map(module => (
                 <tr>
-                    <td className="smallColumn">{row[0]}</td>
-                    <td className="smallColumn">{row[1]}</td>
-                    <td className="bigColumn">{row[2]}</td>
-                    <td className="smallColumn">{row[3]}</td>
-                    <td className="smallColumn">{row[4]}</td>
-                    <td className="bigColumn">{row[5]}</td>
+                    <td className="smallColumn">{module.year}</td>
+                    <td className="smallColumn">{module.semester}</td>
+                    <td className="bigColumn">{module.moduleCode}</td>
+                    <td className="smallColumn">{module.grade}</td>
+                    <td className="smallColumn">{module.unit}</td>
+                    <td className="bigColumn">{module.remark}</td>
                 </tr>
             ))}
         </tbody>

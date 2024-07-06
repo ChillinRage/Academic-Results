@@ -6,24 +6,40 @@ import Button from './Button.tsx';
 import Form from './Form.tsx';
 import Summary from './Summary.tsx';
 
-import Logic from '../../scripts/Logic.js';
+import { calculateScore } from '../../scripts/Utils.ts';
+import { compareGrade, compareModuleCode } from '../../scripts/Sort_util.ts';
+import ModuleData from '../../scripts/ModuleData.ts';
+
+import { Module, ModuleFilter } from '../../Types.ts'
+import { DEFAULT_FILTER } from '../../Constants.ts';
+
 import '../css/App.css';
 
 const App = () => {
-    const [data, setData] = React.useState([]);
+    // states
+    const [data, setData] = React.useState<Module[]>([]);
     const [score, setScore] = React.useState((0).toFixed(2));
     const [showForm, setShowForm] = React.useState(false);
     const [showSummary, setShowSummary] = React.useState(false);
-    const logic = React.useMemo(() => new Logic(setData, setScore), []);
+    const [filterFunc, setFilter] = React.useState<ModuleFilter>(() => DEFAULT_FILTER);
+
+    // initialize variables
+    const moduleData = React.useMemo(() => new ModuleData(), []);
     
-    const filterForm  = <Form className={showForm ? 'filterForm-visible' : 'filterForm-collapse'} logic={logic}/>;
-    const recordTable = <CourseTable list={data} moduleFunc={() => logic.sortByCode()} gradeFunc={() => logic.sortByGrade()}/>;
-
-    const rawGradeButton = <Button className='rawGrades' label='Raw Grades' onClick={() => logic.displayRaw()}/>;
-    const withSuButton   = <Button className='withSU'    label='with SU'    onClick={() => logic.displaySU()}/>;
-    const filterButton   = <Button className='filter'    label='Filter By'  onClick={() => setShowForm(!showForm)}/>;
-
+    // components
+    const rawGradeButton = <Button className='rawGrades' label='Load Raw'  onClick={() => setData(moduleData.getRawList())}/>;
+    const withSuButton   = <Button className='withSU'    label='Load SU'   onClick={() => setData(moduleData.getSuList())}/>;
+    const filterButton   = <Button className='filter'    label='Filter By' onClick={() => setShowForm(!showForm)}/>;
+    const filterForm  = <Form className={showForm ? 'filterForm-visible' : 'filterForm-collapse'} setFilter={setFilter}/>;
     const summaryLabel = <label id='summaryLabel' onClick={() => setShowSummary(!showSummary)}>Summary Report</label>;
+    const recordTable = <CourseTable list={data.filter(filterFunc)}
+                            moduleFunc={() => setData([...data.sort(compareModuleCode)])}
+                            gradeFunc={() => setData([...data.sort(compareGrade)])}/>;
+
+    // effects
+    React.useEffect(() => {
+        setScore(calculateScore(data));
+    }, data);
 
     return <>
         <Header/>
