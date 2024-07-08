@@ -35,11 +35,11 @@ const Form = ({className, setFilter} : Props) => {
         const filterData: ModuleCriteria = {};
 
         if (form.year.value != '') filterData.year = parseInt(form.year.value);
-        if (form.semester.value != '') filterData.semester = form.semester.value;
+        if (form.semester.value != '') filterData.semester = parseInt(form.semester.value);
         if (form.moduleCode.value != '') filterData.moduleCode = form.moduleCode.value;
         if (form.grade.value != '') filterData.grade = form.grade.value;
         if (form.unit.value != '') filterData.unit = parseInt(form.unit.value);
-        //if (form.remark.value != '') filterData.remark = form.remark.value;
+        if (form.remark.value != '') filterData.remark = form.remark.value;
 
         const newFilter: ModuleFilter = createFilter(filterData);
         setFilter(() => newFilter);
@@ -86,7 +86,10 @@ const Form = ({className, setFilter} : Props) => {
 
         <label htmlFor="unit">Unit</label>
         <input type="number" id="unit" name="unit" min="0" max="50"
-         onInput={sender => checkValue(sender.currentTarget)}></input>
+         onInput={sender => checkValue(sender.currentTarget)}/>
+
+         <label htmlFor='remark'>Remark</label>
+         <input type='text' id='remark' name='remark'/>
 
         <Button className="reset" label="reset" onClick={sender => resetForm(sender.target.parentNode)}/>
         <Button className="submit" label="submit" onClick={sender => submitForm(sender.target.parentNode)}/>

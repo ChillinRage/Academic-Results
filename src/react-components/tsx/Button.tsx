@@ -4,7 +4,7 @@ import '../css/Button.css';
 interface Props {
     className: string,
     label: string,
-    onClick: (any) => any
+    onClick: (arg0: any) => any
 }
 
 const Button = ({className, label, onClick} : Props) => {

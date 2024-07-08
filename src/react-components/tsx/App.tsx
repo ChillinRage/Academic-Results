@@ -18,7 +18,6 @@ import '../css/App.css';
 const App = () => {
     // states
     const [data, setData] = React.useState<Module[]>([]);
-    const [score, setScore] = React.useState((0).toFixed(2));
     const [showForm, setShowForm] = React.useState(false);
     const [showSummary, setShowSummary] = React.useState(false);
     const [filterFunc, setFilter] = React.useState<ModuleFilter>(() => DEFAULT_FILTER);
@@ -36,11 +35,6 @@ const App = () => {
                             moduleFunc={() => setData([...data.sort(compareModuleCode)])}
                             gradeFunc={() => setData([...data.sort(compareGrade)])}/>;
 
-    // effects
-    React.useEffect(() => {
-        setScore(calculateScore(data));
-    }, data);
-
     return <>
         <Header/>
         <div className='utilRow'>
@@ -48,7 +42,7 @@ const App = () => {
             {withSuButton}
             {filterButton}
             {summaryLabel}
-            <GpaLabel num={score}/>
+            <GpaLabel num={calculateScore(data.filter(filterFunc))}/>
         </div>
         {filterForm}
         {recordTable}

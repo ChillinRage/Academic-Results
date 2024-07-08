@@ -24,7 +24,7 @@ class ModuleData {
         const stringList = await getURL()
             .then(url => fetch(url))                    // fetch data
             .then(response => response.text())          // process data
-            .then(raw_data => raw_data.split('\n'))     // split into rows
+            .then(raw_data => raw_data.split('\r\n'))     // split into rows
             .catch(err => {
                 alert("ERROR: Unable to fetch data!\nUsing sample data instead.");
                 return [...SAMPLE_DATA];
