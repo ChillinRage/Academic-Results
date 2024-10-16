@@ -9,3 +9,11 @@ export function createFilter(criteria: ModuleCriteria): ModuleFilter {
         && (criteria.unit === undefined         || criteria.unit === module.unit)
         && (criteria.remark === undefined       || module.remark.toLowerCase().includes(criteria.remark.toLowerCase()));
 };
+
+export function orFilter(filter1: ModuleFilter, filter2: ModuleFilter): ModuleFilter {
+    return (module: Module) => filter1(module) || filter2(module);
+}
+
+export function andFilter(filter1: ModuleFilter, filter2: ModuleFilter): ModuleFilter {
+    return (module: Module) => filter1(module) && filter2(module);
+}

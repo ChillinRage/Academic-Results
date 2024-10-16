@@ -1,11 +1,12 @@
 export type Module = {
+    index: number,
     year: number,
     semester: number,
     moduleCode: string,
     grade: Grade,
     unit: number,
-    remark: string,
-    hasSU: boolean,
+    remark: String,
+    su?: Grade,
 }
 
 export type Grade = 'A' | 'A+' | 'A-' | 'B' | 'B+' | 'B-' | 'C' | 'C+' | 'D' | 'D+' | 'F' | 'S' | 'U';

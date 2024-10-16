@@ -9,3 +9,31 @@
     top: 16%;
     left: 5%;
 }
+
+.close-button {
+    color: white;
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 6px;
+    right: 2px;
+}
+
+.close-button:hover {
+    background: rgb(131, 119, 166);
+}
+
+.title {
+    margin: 5px 0;
+}
+
+.report-header {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.report-row {
+    font-size: 30px;
+    margin: 20px 0;
+}

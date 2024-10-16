@@ -2,13 +2,11 @@ import React from 'react';
 import Header from './Header.tsx';
 import CourseTable from './CourseTable.tsx';
 import GpaLabel from './GpaLabel.tsx';
-import Button from './Button.tsx';
 import Form from './Form.tsx';
 import Summary from './Summary.tsx';
 
-import { calculateScore } from '../../scripts/Utils.ts';
-import { compareGrade, compareModuleCode } from '../../scripts/Sort_util.ts';
-import ModuleData from '../../scripts/ModuleData.ts';
+import { calculateScore} from '../../scripts/Utils.ts';
+import { fetchModuleList } from '../../scripts/ModuleData.ts';
 
 import { Module, ModuleFilter } from '../../Types.ts'
 import { DEFAULT_FILTER } from '../../Constants.ts';
@@ -17,23 +15,55 @@ import '../css/App.css';
 
 const App = () => {
     // states
-    const [data, setData] = React.useState<Module[]>([]);
+    const [moduleList, setModuleList] = React.useState<Module[]>([]);
+    const [tableData, setTableData] = React.useState<Module[]>([]);
+    const [showSU, setShowSU] = React.useState<Boolean>(true);
     const [showForm, setShowForm] = React.useState(false);
     const [showSummary, setShowSummary] = React.useState(false);
     const [filterFunc, setFilter] = React.useState<ModuleFilter>(() => DEFAULT_FILTER);
 
-    // initialize variables
-    const moduleData = React.useMemo(() => new ModuleData(), []);
+    const updateTableData = () => {
+        setTableData(moduleList.map(module => {
+            return {...module, grade: (showSU && module.su) || module.grade}
+            }).filter(filterFunc));
+        }
+
+    // effects
+    React.useEffect(() => {
+        fetchModuleList()
+        .then(moduleList => setModuleList(moduleList));
+    }, []);
+
+    React.useEffect(updateTableData, [showSU, filterFunc, moduleList])
     
     // components
-    const rawGradeButton = <Button className='rawGrades' label='Load Raw'  onClick={() => setData(moduleData.getRawList())}/>;
-    const withSuButton   = <Button className='withSU'    label='Load SU'   onClick={() => setData(moduleData.getSuList())}/>;
-    const filterButton   = <Button className='filter'    label='Filter By' onClick={() => setShowForm(!showForm)}/>;
-    const filterForm  = <Form className={showForm ? 'filterForm-visible' : 'filterForm-collapse'} setFilter={setFilter}/>;
-    const summaryLabel = <label id='summaryLabel' onClick={() => setShowSummary(!showSummary)}>Summary Report</label>;
-    const recordTable = <CourseTable list={data.filter(filterFunc)}
-                            moduleFunc={() => setData([...data.sort(compareModuleCode)])}
-                            gradeFunc={() => setData([...data.sort(compareGrade)])}/>;
+    const rawGradeButton = <button
+        type='button'
+        className='rawGrades'
+        onClick={() => setShowSU(false)}
+    >Load Raw</button>;
+
+    const withSuButton = <button
+        type='button'
+        className='withSU'
+        onClick={() => setShowSU(true)}
+    >Load SU</button>;
+
+    const filterButton = <button
+        className='filter'
+        onClick={() => setShowForm(!showForm)}
+    >Filter By</button>;
+
+    const filterForm = <Form
+        className={showForm ? 'filterForm-visible' : 'filterForm-collapse'}
+        id='filterForm'
+        setFilter={setFilter}
+        />;
+
+    const summaryLabel = <label
+        id='summaryLabel'
+        onClick={() => setShowSummary(!showSummary)}
+        >Summary Report</label>;
 
     return <>
         <Header/>
@@ -42,11 +72,12 @@ const App = () => {
             {withSuButton}
             {filterButton}
             {summaryLabel}
-            <GpaLabel num={calculateScore(data.filter(filterFunc))}/>
+            <GpaLabel num={calculateScore(tableData, showSU)}/>
         </div>
+
         {filterForm}
-        {recordTable}
-        {showSummary && <Summary/>}
+        <CourseTable tableData={tableData} setTableData={setTableData}/>
+        {showSummary && <Summary setModal={setShowSummary} moduleList={moduleList}/>}
     </>
 }
 

@@ -3,15 +3,14 @@ import { Module, Grade } from '../Types.ts';
 
 const getGradeValue = (grade: Grade): number => GRADE_VALUE[grade];
 
-export function calculateScore(moduleList: Module[]): string {
+export function calculateScore(moduleList: Module[], isSU: Boolean): string {
     let total_units = 0;
     let points = 0;
 
     moduleList.forEach(module => {
-        total_units += module.unit;
-        points += getGradeValue(module.grade) * module.unit;
-        if (module.grade === 'S' || module.grade === 'U') {
-            total_units -= module.unit;
+        if (!(isSU && module.su)) {
+            total_units += module.unit;
+            points += getGradeValue(module.grade) * module.unit;
         }
     });
 
@@ -20,18 +19,19 @@ export function calculateScore(moduleList: Module[]): string {
         : (0).toFixed(2);
 }
 
-export function stringToModule(moduleString: string): Module {
+export function stringToModule(i: number, moduleString: string): Module {
     const stringList = moduleString.split(',');
 
-    const newModule = {
+    const newModule: Module = {
+        index: i,
         year: parseInt(stringList[0]),
         semester: parseInt(stringList[1]),
         moduleCode: stringList[2],
         grade: <Grade> stringList[3],
         unit: parseInt(stringList[4]),
-        remark: stringList[5],
-        hasSU: stringList[6] === 'true',
+        remark: stringList[5]
     }
+    if (stringList.length === 7) newModule.su = stringList[6] as Grade;
 
     return newModule;
 };
@@ -39,7 +39,7 @@ export function stringToModule(moduleString: string): Module {
 export function moduleToSu(module: Module): Module {
     const failGrades = ['D+', 'D', 'F'];
     const newModule = {...module};
-    if (newModule.hasSU) {
+    if (newModule.su) {
         newModule.grade = failGrades.includes(newModule.grade)
             ? 'U'
             : 'S';
