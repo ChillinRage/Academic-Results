@@ -1,7 +1,20 @@
-.header {
-    margin-bottom: 1%;
+.headerContainer {
+    display: flex;
+    margin: 1em 0;
+}
+
+.headerTitle {
+    margin: 0;
+    width: 100%;
     font-size: 45px;
     color: azure;
+}
+
+.githubIcon {
+    background-color: white;
+    border-radius: 15px;
+    width: 65px;
+    height: 65px;
 }
 
 @media (max-width: 600px) {
