@@ -8,6 +8,8 @@ interface Props {
   setTableData: React.Dispatch<React.SetStateAction<Module[]>>,
 }
 
+const NUSMODS_BASELINK = 'https://nusmods.com/courses/';
+
 const CourseTable = ({tableData, setTableData} : Props) => {
   const sortByModuleCode = () => setTableData([...tableData.sort(compareModuleCode)]);
   const sortByGrade = () => setTableData([...tableData.sort(compareGrade)]);
@@ -28,12 +30,15 @@ const CourseTable = ({tableData, setTableData} : Props) => {
     <tbody>
       {tableData.map(module => (
         <tr>
-          <td className="smallColumn">{module.year}</td> 
-          <td className="smallColumn">{module.semester}</td>
-          <td className="bigColumn">{module.moduleCode}</td>
-          <td className="smallColumn">{module.grade}</td>
-          <td className="smallColumn">{module.unit}</td>
-          <td className="bigColumn">{module.remark}</td>
+          <td className='smallColumn'>{module.year}</td> 
+          <td className='smallColumn'>{module.semester}</td>
+          <td className='bigColumn'>
+            <a className='moduleLink' href={NUSMODS_BASELINK + module.moduleCode} target='_blank'>
+              {module.moduleCode}
+          </a></td>
+          <td className='smallColumn'>{module.grade}</td>
+          <td className='smallColumn'>{module.unit}</td>
+          <td className='bigColumn'>{module.remark}</td>
         </tr>
       ))}
     </tbody>

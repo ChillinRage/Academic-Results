@@ -43,3 +43,8 @@ td {
     text-shadow: 4px 4px 4px rgb(180, 180, 180);
     transition: .3s;
 }
+
+.moduleLink {
+    text-decoration: none;
+    color: inherit;
+}
