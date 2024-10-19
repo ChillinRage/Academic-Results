@@ -1,5 +1,5 @@
 import { getURL } from './Firebase.ts';
-import { stringToModule, moduleToSu } from './Utils.ts';
+import { stringToModule } from './Utils.ts';
 import { Module } from '../Types.ts';
 
 const SAMPLE_DATA = [

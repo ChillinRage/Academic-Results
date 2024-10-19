@@ -23,3 +23,12 @@ export type ModuleCriteria = {
 };
 
 export type ModuleSort = (module1: Module, module2: Module) => number;
+
+
+export type CumulativeReport = {
+    date: string,
+    units: number,
+    unitDiff: number,
+    score: string,
+    scoreDiff: string,
+}
