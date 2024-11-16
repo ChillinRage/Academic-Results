@@ -32,7 +32,7 @@ const CourseTable = ({tableData, setTableData} : Props) => {
         <tr>
           <td className='smallColumn'>{module.year}</td> 
           <td className='smallColumn'>{module.semester}</td>
-          <td className='bigColumn'>
+          <td className='midColumn'>
             <a className='moduleLink' href={NUSMODS_BASELINK + module.moduleCode} target='_blank'>
               {module.moduleCode}
           </a></td>

@@ -6,11 +6,11 @@ import firebaseConfig from "../assets/firebaseConfig.json";
 async function getURL(): Promise<string> {
   // Initialize and authenticate Firebase
   if (location.hostname === 'localhost') // for local development
-    self.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.FIREBASE_APPCHECK_DEBUG_TOKEN;
+    self.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.REACT_APP_FIREBASE_APPCHECK_DEBUG_TOKEN;
 
   const app = initializeApp(firebaseConfig);
   initializeAppCheck(app, {
-    provider: new ReCaptchaV3Provider(process.env.CAPTCHA_SITE_KEY!),
+    provider: new ReCaptchaV3Provider(process.env.REACT_APP_CAPTCHA_SITE_KEY!),
     isTokenAutoRefreshEnabled: true
   });
 

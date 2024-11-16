@@ -34,18 +34,15 @@ export function getCumulativeReport(moduleList: Module[]): CumulativeReport[] {
   return reports;
 }
 
-export function getGradeReport(moduleList: Module[]) {
+export function getGradeSummary(moduleList: Module[]) {
   const dict = moduleList.reduce((grades, module) => {
     grades[module.su || module.grade] = (grades[module.su || module.grade] || 0) + 1;
     return grades;
   }, {});
 
-  let output = '';
-  for (const grade in GRADE_LIST) {
-
-  }
-
-  return GRADE_LIST.reduce((res, grade) => res +
-    ((dict[grade] && ` ${grade}: ${dict[grade]} |`) || ''),
-  '| ');
+  // Sort in the order of grade list
+  return GRADE_LIST.reduce((res, grade) => {
+    if (dict[grade]) res[grade] = dict[grade];
+    return res;
+  }, {});
 }

@@ -9,11 +9,11 @@ html {
 
 body {
     text-align: center;
-    margin: auto;
     font-size: 30px;
     min-width: 900px;
     max-width: 1300px;
     margin: 0 auto;
+    padding: 0 40px;
     overflow-y: scroll;
 }
 
