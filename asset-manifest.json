@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Academic-Results/static/css/main.b64dec1e.css",
-    "main.js": "/Academic-Results/static/js/main.dcbb2dfd.js",
+    "main.js": "/Academic-Results/static/js/main.f3600ea0.js",
     "static/media/bg_watch.png": "/Academic-Results/static/media/bg_watch.c8d13f338d2d26202cc1.png",
     "index.html": "/Academic-Results/index.html",
     "main.b64dec1e.css.map": "/Academic-Results/static/css/main.b64dec1e.css.map",
-    "main.dcbb2dfd.js.map": "/Academic-Results/static/js/main.dcbb2dfd.js.map"
+    "main.f3600ea0.js.map": "/Academic-Results/static/js/main.f3600ea0.js.map"
   },
   "entrypoints": [
     "static/css/main.b64dec1e.css",
-    "static/js/main.dcbb2dfd.js"
+    "static/js/main.f3600ea0.js"
   ]
 }
