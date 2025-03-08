@@ -16,6 +16,7 @@
 
     text-decoration-color: transparent;
     transition: text-decoration-color .3s;
+    user-select: none;
 }
 
 #summaryLabel:hover {

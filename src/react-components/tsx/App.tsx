@@ -30,11 +30,19 @@ const App = () => {
 
     // effects
     React.useEffect(() => {
+        setModuleList(JSON.parse(localStorage.getItem('data') || '[]'));
+
         fetchModuleList()
-        .then(moduleList => setModuleList(moduleList));
+        .then(moduleList => {
+            if (JSON.stringify(moduleList) === localStorage.getItem('data')) // no change since last fetch
+                return;
+            
+            localStorage.setItem('data', JSON.stringify(moduleList));
+            setModuleList(JSON.parse(localStorage.getItem('data') || '[]'));
+        });
     }, []);
 
-    React.useEffect(updateTableData, [showSU, filterFunc, moduleList])
+    React.useEffect(updateTableData, [showSU, filterFunc, moduleList]);
     
     // components
     const rawGradeButton = <button

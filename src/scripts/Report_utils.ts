@@ -12,7 +12,7 @@ export function getCumulativeReport(moduleList: Module[]): CumulativeReport[] {
 
   for (let year = 1; year < 5; year++) {
     for (let semester = 1; semester < 3; semester++) {
-      const newFilter = createFilter({year, semester});
+      const newFilter = createFilter({years: [year], semesters: [semester]});
       if (moduleList.filter(newFilter).length === 0) break;
 
       filterFunc = orFilter(newFilter, filterFunc);

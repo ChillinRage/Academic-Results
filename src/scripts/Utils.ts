@@ -1,4 +1,4 @@
-import { GRADE_VALUE } from '../Constants.ts';
+import { GRADE_VALUE, EXEMPTED_GRADES } from '../Constants.ts';
 import { Module, Grade } from '../Types.ts';
 
 const getGradeValue = (grade: Grade): number => GRADE_VALUE[grade];
@@ -8,7 +8,8 @@ export function calculateScore(moduleList: Module[], isSU: Boolean): string {
     let points = 0;
 
     moduleList.forEach(module => {
-        if (!(isSU && module.su)) {
+        const grade: Grade = (isSU && module.su) || module.grade;
+        if (!EXEMPTED_GRADES.includes(grade)) {
             total_units += module.unit;
             points += getGradeValue(module.grade) * module.unit;
         }

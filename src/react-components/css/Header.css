@@ -6,19 +6,19 @@
 .headerTitle {
     margin: 0;
     width: 100%;
-    font-size: 45px;
+    font-size: 42px;
     color: azure;
 }
 
 .githubIcon {
     background-color: white;
     border-radius: 15px;
-    width: 65px;
-    height: 65px;
+    width: 64px;
+    height: 64px;
 }
 
 @media (max-width: 600px) {
     .header {
-        font-size: 30px;
+        font-size: 26px;
     }
 }
