@@ -28,11 +28,11 @@ const checkModuleGrade = (moduleGrade: Grade, criteriaGrades: Grade[] | undefine
     criteriaGrades === undefined || criteriaGrades.length === 0 || criteriaGrades.includes(moduleGrade);
 
 const checkModuleCode = (moduleCode: string, criteriaCode: string | undefined): boolean =>
-    criteriaCode === undefined || criteriaCode === '' || criteriaCode.includes(moduleCode.toUpperCase());
+    criteriaCode === undefined || criteriaCode === '' || moduleCode.includes(criteriaCode.toUpperCase());
 
 const checkModuleUnit = (moduleUnit: number, criteriaUnit: number | undefined): boolean =>
     criteriaUnit === undefined || criteriaUnit === moduleUnit;
 
 const checkModuleRemark = (moduleRemark: string, criteriaRemark: string | undefined): boolean =>
     criteriaRemark === undefined || criteriaRemark === ''
-    || criteriaRemark.toLowerCase().includes(moduleRemark.toLowerCase());
+    || moduleRemark.toLowerCase().includes(criteriaRemark.toLowerCase());

@@ -1,3 +1,4 @@
+/*
 import { Module } from '../Types.ts';
 
 interface requirement {
@@ -13,4 +14,4 @@ const University_Level: requirement = {
 };
 
 const Computing_Ethics = {};
-
+*/

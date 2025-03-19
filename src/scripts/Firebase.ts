@@ -3,6 +3,10 @@ import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import firebaseConfig from "../assets/firebaseConfig.json";
 
+declare global {
+  var FIREBASE_APPCHECK_DEBUG_TOKEN: boolean | string | undefined;
+}
+
 async function getURL(): Promise<string> {
   // Initialize and authenticate Firebase
   if (location.hostname === 'localhost') // for local development

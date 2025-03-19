@@ -46,7 +46,7 @@ const Summary = ({moduleList, setModal} : Props) => {
   </table>
 
   return <div id='summaryModal'>
-    <button className="close-button" onClick={handleClose}>X</button>
+    <button className="summary-close-button" onClick={handleClose}>X</button>
     <h1 className='title'><u>Summary</u></h1>
 
     {cumulativeTable}

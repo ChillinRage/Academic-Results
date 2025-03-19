@@ -1,4 +1,3 @@
-
 .utilRow {
     width: 100%;
     margin: auto;
@@ -8,6 +7,7 @@
 }
 
 #summaryLabel {
+    width: 190px;
     margin-left: auto;
     margin-right: 0;
     padding: 1%;

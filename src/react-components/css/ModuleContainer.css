@@ -1,0 +1,9 @@
+#module-container {
+  padding-bottom: 10px;
+  margin: auto;
+  display: flex;
+  font-family: 'Courier New';
+  overflow: auto;
+  overflow-y: hidden;
+  background-color: rgba(235, 255, 255, 0.75);
+}

@@ -1,5 +1,5 @@
 export type Module = {
-    index: number,
+    id: number,
     year: number,
     semester: number,
     moduleCode: string,

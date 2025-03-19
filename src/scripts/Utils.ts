@@ -3,12 +3,12 @@ import { Module, Grade } from '../Types.ts';
 
 const getGradeValue = (grade: Grade): number => GRADE_VALUE[grade];
 
-export function calculateScore(moduleList: Module[], isSU: Boolean): string {
+export function calculateScore(moduleList: Module[]): string {
     let total_units = 0;
     let points = 0;
 
     moduleList.forEach(module => {
-        const grade: Grade = (isSU && module.su) || module.grade;
+        const grade: Grade = module.su || module.grade;
         if (!EXEMPTED_GRADES.includes(grade)) {
             total_units += module.unit;
             points += getGradeValue(module.grade) * module.unit;
@@ -24,7 +24,7 @@ export function stringToModule(i: number, moduleString: string): Module {
     const stringList = moduleString.split(',');
 
     const newModule: Module = {
-        index: i,
+        id: i,
         year: parseInt(stringList[0]),
         semester: parseInt(stringList[1]),
         moduleCode: stringList[2],

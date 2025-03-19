@@ -3,12 +3,12 @@ import { stringToModule } from './Utils.ts';
 import { Module } from '../Types.ts';
 
 const SAMPLE_DATA = [
-  "year,semester,module,grade,unit,remark,su",
-  "1,1,ABC1234,B+,4,Sample",
-  "1,2,MOE7211,C+,2,Sample SU,S",
-  "2,2,DEF5678,A,4,SAMPLE",
-  "3,1,CODE7211,A-,4,Something here",
-  "4,2,FINAL4420,A+,6,",
+  "id,year,semester,module,grade,unit,remark,su",
+  "0,1,1,ABC1234,B+,4,Sample",
+  "1,1,2,MOE7211,C+,2,Sample SU,S",
+  "2,2,2,DEF5678,A,4,SAMPLE",
+  "3,3,1,CODE7211,A-,4,Something here",
+  "4,4,2,FINAL4420,A+,6,",
   "UNDEFINED ROW TO BE REMOVED"
 ];
 

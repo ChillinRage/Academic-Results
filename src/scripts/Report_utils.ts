@@ -20,7 +20,7 @@ export function getCumulativeReport(moduleList: Module[]): CumulativeReport[] {
 
       date = `AY${21+year}/${22+year} S${semester}`;
       units = filteredList.reduce((acc, current) => acc + current.unit, 0);
-      score = calculateScore(filteredList, true);
+      score = calculateScore(filteredList);
       unitDiff = units - prevUnits;
       scoreDiff = parseFloat(score) - prevScore;
       scoreDiff = (scoreDiff >= 0 ? '+' : '') + scoreDiff.toFixed(2);

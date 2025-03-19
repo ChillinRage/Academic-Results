@@ -4,14 +4,13 @@ html {
 
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100%;
+    background-size: 120%;
 }
 
 body {
     text-align: center;
     font-size: 27px;
-    min-width: 900px;
-    max-width: 1300px;
+    width: 900px;
     margin: 0 auto;
     padding: 0 40px;
     overflow-y: scroll;
