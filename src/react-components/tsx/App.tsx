@@ -33,7 +33,6 @@ const App = () => {
     // effects
     React.useEffect(() => {
         setModuleList(JSON.parse(localStorage.getItem('data') || '[]'));
-        console.log(process.env.REACT_APP_DATA_VERSION)
         
         if (localStorage.getItem('data-version') === process.env.REACT_APP_DATA_VERSION) // cache is updated
             return;

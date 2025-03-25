@@ -1,6 +1,8 @@
 /node_modules
 /build
+/.vscode
 
 package-lock.json
-/src/assets/firebaseConfig.json
+tsconfig.json
+firebaseConfig.json
 .env
