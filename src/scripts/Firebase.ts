@@ -17,10 +17,16 @@ async function getURL(): Promise<string> {
     isTokenAutoRefreshEnabled: true
   });
 
-  const storage = getStorage(app);
-  const resultsRef = ref(storage, "results.csv");
-  const url = await getDownloadURL(resultsRef)
-  return url;
+  try {
+    const storage = getStorage(app);
+    const resultsRef = ref(storage, "results.csv");
+    const url = await getDownloadURL(resultsRef)
+    return url;
+
+  } catch (err) {
+    alert("ERROR: Unable to fetch data!\nUsing sample data instead.");
+    return undefined;
+  }
 }
 
 export {getURL};

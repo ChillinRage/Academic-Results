@@ -6,7 +6,7 @@ import Form from './Form.tsx';
 import Summary from './Summary.tsx';
 
 import { calculateScore} from '../../scripts/Utils.ts';
-import { fetchModuleList } from '../../scripts/ModuleData.ts';
+import { fetchData } from '../../scripts/ModuleData.ts';
 
 import { Module, ModuleFilter } from '../../Types.ts'
 import { DEFAULT_FILTER } from '../../Constants.ts';
@@ -33,16 +33,15 @@ const App = () => {
     // effects
     React.useEffect(() => {
         setModuleList(JSON.parse(localStorage.getItem('data') || '[]'));
-        
-        if (localStorage.getItem('data-version') === process.env.REACT_APP_DATA_VERSION) // cache is updated
-            return;
 
-        fetchModuleList()
-        .then(moduleList => {
-            setModuleList(moduleList);
+        fetchData()
+        .then(data => {
+            if (localStorage.getItem('last-modified') === data.last_modified)  // cache up to date
+                return;
 
-            localStorage.setItem('data', JSON.stringify(moduleList));
-            localStorage.setItem('data-version', process.env.REACT_APP_DATA_VERSION || 'UNKNOWN');     
+            setModuleList(data.module_list);
+            localStorage.setItem('data', JSON.stringify(data.module_list));
+            localStorage.setItem('last-modified', data.last_modified); 
         });
     }, []);
 
