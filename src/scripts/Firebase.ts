@@ -20,7 +20,7 @@ async function getURL(): Promise<string> {
   try {
     const storage = getStorage(app);
     const resultsRef = ref(storage, "results_2526s1.csv");
-    const url = await getDownloadURL(resultsRef)
+    const url = await getDownloadURL(resultsRef);
     return url;
 
   } catch (err) {
